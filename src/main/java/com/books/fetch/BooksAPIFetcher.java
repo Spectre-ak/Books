@@ -19,9 +19,13 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.apache.tomcat.util.json.JSONParser;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 
 @RestController
@@ -45,6 +49,38 @@ public class BooksAPIFetcher {
 		return result.toList();
 	}
 
+	@GetMapping("/{id}")
+	public Object getById(@PathVariable String id) {
+		if (result==null)
+			fetch();
+		JSONObject requestedBook=new JSONObject();
+		for(int i=0;i<result.length();i++) {
+			JSONObject jsonObject=result.getJSONObject(i);
+			if(jsonObject.get("bookID").toString().equals(id)) {
+				requestedBook=jsonObject;
+				break;
+			}
+		}
+		return requestedBook.toMap();
+	}
+	
+	@GetMapping("/search/{term}")
+	public Object getBySearchTerm(@PathVariable String term) {
+		if (result==null)
+			fetch();
+		JSONArray jsonArray=new JSONArray();
+		for(int i=0;i<result.length();i++) {
+			JSONObject jsonObject=result.getJSONObject(i);
+			String titleKeywords[]=jsonObject.get("title").toString().split(" ");
+			String termKeywords[]=term.split(" ");
+			
+			for(String )
+			
+			
+		}
+		return jsonArray.toList();
+	}
+	
 	
 	
 	public synchronized void fetch() {
