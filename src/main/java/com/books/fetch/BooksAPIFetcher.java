@@ -69,14 +69,13 @@ public class BooksAPIFetcher {
 		if (result==null)
 			fetch();
 		JSONArray jsonArray=new JSONArray();
+		term=term.toLowerCase();
 		for(int i=0;i<result.length();i++) {
 			JSONObject jsonObject=result.getJSONObject(i);
-			String titleKeywords[]=jsonObject.get("title").toString().split(" ");
-			String termKeywords[]=term.split(" ");
-			
-			for(String )
-			
-			
+			String title=jsonObject.get("title").toString().toLowerCase();
+			if(title.contains(term)) {
+				jsonArray.put(jsonObject);
+			}
 		}
 		return jsonArray.toList();
 	}
