@@ -25,7 +25,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-
+/**
+ * Books API fetcher class provides a search interface for books API available at 
+ * https://s3-ap-southeast-1.amazonaws.com/he-public-data/books8f8fe52.json
+ * 
+ * @author upadhyayakash2002@gmail.com
+ *
+ */
 
 
 @RestController
@@ -49,6 +55,11 @@ public class BooksAPIFetcher {
 		return result.toList();
 	}
 
+	/**
+	 * This get method takes the book based on the id provided
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public Object getById(@PathVariable String id) {
 		if (result==null)
@@ -64,6 +75,12 @@ public class BooksAPIFetcher {
 		return requestedBook.toMap();
 	}
 	
+	/**
+	 * this get method takes a search parameter and returns all books which contains the search parameter
+	 * in the title 
+	 * @param term
+	 * @return
+	 */
 	@GetMapping("/search/{term}")
 	public Object getBySearchTerm(@PathVariable String term) {
 		if (result==null)
@@ -81,7 +98,9 @@ public class BooksAPIFetcher {
 	}
 	
 	
-	
+	/**
+	 * this is the synchronized method use for downloading the books api and saving it locally so that processing can be easy
+	 */
 	public synchronized void fetch() {
 		try {
 			URL bookUrl=new URL("https://s3-ap-southeast-1.amazonaws.com/he-public-data/books8f8fe52.json");
