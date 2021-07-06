@@ -21,9 +21,9 @@ public class CustomErrorHandler implements ErrorController{
         System.out.println();
         return "<h1>Endpoint not found</h1><hr>"
         		+ "<h2>Available endpoints</h2>"
-        		+ "<h4><a href='localhost:8080'>localhost:8080</a></h4>"
-        		+ "<h4><a href='localhost:8080/search/'>localhost:8080/search/search_query</a></h4>"
-        		+ "<h4><a href='localhost:8080/bookId'>localhost:8080/bookId</a></h4>";
+        		+ "<h4><a href='https://book-fetch.azurewebsites.net/'>/ (home)</a></h4>"
+        		+ "<h4><a href='https://book-fetch.azurewebsites.net/search/search_query'>/search/search_query</a></h4>"
+        		+ "<h4><a href='https://book-fetch.azurewebsites.net/bookId'>/bookId</a></h4>";
     }
 
 
