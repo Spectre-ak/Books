@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: dockerdemotesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_756e008ba16b4dd8be678cda5bc08f3c }}/books-fetch:${{ github.sha }}
+        tags: dockerdemotesting.azurecr.io/books-fetch:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'book-fetch'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8c8c4c5a922a419e96a620194eab00fc }}
-        images: 'dockerdemotesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_756e008ba16b4dd8be678cda5bc08f3c }}/books-fetch:${{ github.sha }}'
+        images: 'dockerdemotesting.azurecr.io/books-fetch:${{ github.sha }}'
